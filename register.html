@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+
+    .main-nav {
+  background: #000;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  transition: top 0.3s ease-in-out;
+  font-family: "Inter", sans-serif;
+}
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  z-index: 1;
+  width: 100%;
+  padding: 0 24px;
+  max-width: 1280px;
+}
+
+.nav-logo {
+  color: #fff;
+  justify-self: flex-start;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  text-decoration: none;
+  margin: auto 20px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+}
+
+.nav-link {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;  
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #facc15;
+}
+
+.nav-link-btn {
+  background-color: #ea5a2f;
+  padding: 8px 20px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  margin-left: 4rem;
+  
+}
+
+.nav-link-btn:hover {
+  background-color: #d04e28;
+  color: #fff;
+}
+
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out;
+  background-color: #fff;
+}
+
+.main-nav.nav-hidden {
+  top: -80px;
+}
+
+
+/* Global Resets and Box Sizing */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 960px) {
+  .nav-container {
+    padding: 0 20px;
+  }
+
+  .nav-logo {
+    margin: auto 0; /* Adjust margin for mobile */
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 80px);
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    background: #1c1c1c;
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .nav-link {
+    padding: 1.5rem 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-link-btn {
+    margin: 1.5rem 0 0 0;
+    
+    padding: 0.5rem 1rem;
+   
+  }
+
+  .menu-toggle {
+    display: block;
+    
+    margin-top: 1.5rem;
+  }
+
+  .menu-toggle.is-active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+body {
+      
+      font-family: 'Inter', sans-serif;
+      background:transparent;
+      color: #4B5563; 
+    }
+    main.background-container {
+      position: relative;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      z-index: 0;
+      
+ 
+    }
+    main.background-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('./assets/img/back.jpg');
+      background-size: cover;
+      background-position: center;
+      /* Dim and blur the image */
+      filter: blur(4px) brightness(0.6);
+      z-index: -1;
+      pointer-events: none;
+      
+    }
+    h1 {
+      text-align: center;
+      color: #000000;
+      font-weight: 800;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      user-select: none;
+    }
+    @media (min-width: 640px) {
+      h1 {
+        font-size: 2.25rem;
+      }
+    }
+    p.subtitle {
+      text-align: center;
+      color: #ffffff; /* gray-600 */
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+      user-select: none;
+    }
+    .cards-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      max-width: 900px; /* increased max width */
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    section.card {
+      border: 2px solid #F3F4F6; /* gray-100 */
+      border-radius: 0.5rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 10;
+      max-width: 440px; /* increased width */
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      /* Initial state for animation */
+      opacity: 0;
+      transform: translateY(30px) scale(0.98);
+    }
+    section.card:hover {
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    }
+    /* Visible state for animation */
+    section.card.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    /* Customer card hover */
+    section.customer-card:hover {
+      border-color: #2563EB; /* blue-600 */
+      box-shadow: 0 12px 24px rgba(32, 97, 238, 0.7);
+      scale: 1.02;
+    }
+    /* Mechanic card hover */
+    section.mechanic-card:hover {
+      border-color: #F97316; /* orange-600 */
+      box-shadow: 0 12px 24px rgba(247, 113, 18, 0.7);
+        scale: 1.02;
+    }
+    .circle-icon, .circle-icon-orange {
+      width: 96px;
+      height: 96px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      flex-shrink: 0;
+      transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+    .circle-icon {
+      background-color: #DBEAFE; /* blue-100 */
+    }
+    section.customer-card:hover .circle-icon {
+      background-color: #BFDBFE; /* blue-200 */
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+    }
+    .circle-icon i {
+      font-size: 2.5rem;
+      color: #2563EB; /* blue-600 */
+      transition: color 0.3s ease;
+    }
+    section.customer-card:hover .circle-icon i {
+      color: #1E40AF; /* blue-900 */
+    }
+    .circle-icon-orange {
+      background-color: #FFEDD5; /* orange-100 */
+    }
+    section.mechanic-card:hover .circle-icon-orange {
+      background-color: #FED7AA; /* orange-200 */
+      box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
+    }
+    .circle-icon-orange i {
+      font-size: 2.5rem;
+      color: #F97316; /* orange-600 */
+      transition: color 0.3s ease;
+    }
+    section.mechanic-card:hover .circle-icon-orange i {
+      color: #C2410C; /* orange-900 */
+    }
+    h2 {
+      font-weight: 600;
+      font-size: 1.125rem;
+      margin-bottom: 0.25rem;
+      user-select: none;
+    }
+    h2 span {
+      font-weight: 700;
+    }
+    p.card-desc {
+      color: #6B7280; /* gray-600 */
+      margin-bottom: 1.5rem;
+      user-select: none;
+    }
+    ul.features-list {
+      color: #6B7280; /* gray-600 */
+      margin-bottom: 2rem;
+      list-style: none;
+      padding-left: 0;
+      max-width: 320px;
+      width: 100%;
+      text-align: left;
+    }
+    ul.features-list li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    ul.features-list li span.bullet {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      display: inline-block;
+      margin-right: 0.75rem;
+      margin-top: 0.25rem;
+      flex-shrink: 0;
+    }
+    ul.features-list.customer li span.bullet {
+      background-color: #2563EB; /* blue-600 */
+    }
+    ul.features-list.mechanic li span.bullet {
+      background-color: #F97316; /* orange-600 */
+    }
+    button.register-btn {
+      width: 100%;
+      max-width: 320px;
+      padding: 0.75rem 0.5rem;
+      border: none;
+      border-radius: 0.375rem;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    a.register-btn {
+        display: inline-block;
+        text-decoration: none;
+        line-height: 0.75rem;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+
+    button.register-btn.customer {
+      background-color: #2563EB; /* blue-600 */
+    }
+    button.register-btn.customer:hover {
+      background-color: #1D4ED8; /* blue-700 */
+    }
+    button.register-btn.mechanic {
+      background-color: #F97316; /* orange-600 */
+    }
+    button.register-btn.mechanic:hover {
+      background-color: #EA580C; /* orange-700 */
+    }
+
+footer {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+footer a {
+  color: #cbd5e1;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Top section */
+.footer-top-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (min-width: 640px) {
+  .footer-top-section {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.logo-address {
+  max-width: 320px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 24px;
+  color: #fff;
+  margin: 0;
+}
+
+.logo-icon {
+  background-color: #facc15;
+  border-radius: 9999px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: #000;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+address {
+  margin-top: 12px;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #cbd5e1;
+}
+
+.hashtag {
+  font-style: italic;
+  font-weight: 800;
+  font-size: 20px;
+  color: #fff;
+  text-align: right;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .hashtag {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hashtag {
+    font-size: 28px;
+  }
+}
+
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 40px;
+  max-width: 100%;
+  margin: 0 auto;
+  
+}
+
+@media (min-width: 640px) {
+  .links-grid {
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+.links-grid h3 {
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
+  font-size: 15px;
+}
+
+.links-grid ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.links-grid ul li {
+  margin-bottom: 8px;
+}
+
+
+.services-nav {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  font-size: 12px;
+  color: #cbd5e1;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.app-social {
+
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: space-between;
+}
+
+@media (min-width: 640px) {
+  .app-social {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.app-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.app-buttons img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.social-icons {
+  display: flex;
+  gap: 40px;
+  font-size: 18px;
+  color: #fff;
+}
+
+.social-icons a {
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #9ca3af;
+  text-decoration: none;
+}
+
+
+.bottom-bar {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 12px;
+  color: #cbd5e1;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .bottom-bar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+}
+
+.bottom-bar p {
+  margin: 0;
+}
+
+.bottom-links {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .bottom-links {
+    justify-content: flex-end;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+    <div class="nav-container">
+
+      <a href="#" class="nav-logo">
+        <img  src="assets/img/logo.png" alt="" height="60">
+        ReadyMechanic
+      </a>
+      
+
+      <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="#" class="nav-link">About</a></li>
+        <li><a href="#" class="nav-link">Contact</a></li>
+        <li><a href="./services.html" class="nav-link">Services</a></li>
+        <li><a href="#" class="nav-link">Subscription</a></li>
+        <li><a href="register.html" class="nav-link nav-link-btn">Register</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="background-container">
+    <h1 style="color: white;">Join Ready Mechanic</h1>
+    <p class="subtitle">
+        Choose your role to get started.
+        Already have an account? <a href="./login.html" style="color: white; font-weight: bold; text-decoration: underline;">Login here</a>
+    </p>
+
+    <div class="cards-container">
+      <!-- Customer Card -->
+      <section class="card customer-card" aria-label="Customer registration card" >
+        <div class="circle-icon" aria-label="User icon in a blue circle">
+          <i class="fas fa-user"></i>
+        </div>
+        <h2>I'm a <span>Customer</span></h2>
+        <p class="card-desc">Book professional mechanics for your vehicle repairs</p>
+        <ul class="features-list customer">
+          <li><span class="bullet"></span>Find nearby mechanics</li>
+          <li><span class="bullet"></span>Book doorstep services</li>
+          <li><span class="bullet"></span>Track service progress</li>
+          <li><span class="bullet"></span>Rate and review</li>
+        </ul>
+        <a href="./customer-register.html" ><button class="register-btn customer">Register as Customer</button></a>
+      </section>
+
+      <!-- Mechanic Card -->
+      <section class="card mechanic-card" aria-label="Mechanic registration card">
+        <div class="circle-icon-orange" aria-label="Wrench icon in an orange circle">
+          <i class="fas fa-wrench"></i>
+        </div>
+        <h2>I'm a <span>Mechanic</span></h2>
+        <p class="card-desc">Join our network and grow your business</p>
+        <ul class="features-list mechanic">
+          <li><span class="bullet"></span>Receive job requests</li>
+          <li><span class="bullet"></span>Manage your schedule</li>
+          <li><span class="bullet"></span>Build your reputation</li>
+          <li><span class="bullet"></span>Grow your income</li>
+        </ul>
+        <a href="./mechanic-register.html" ><button class="register-btn mechanic">Register as Mechanic</button></a>
+      </section>
+    </div>
+  </main>
+
+<!-- Footer Section Open -->
+<footer>
+  <div class="footer-top-section">
+    <div class="logo-address">
+      <h2 class="footer-logo">
+        <span class="logo-icon" aria-hidden="true">
+          
+        </span>
+        ReadyMechanic
+      </h2>
+      
+    </div>
+    <p class="hashtag"><strong>#alwaysMoveForward</strong></p>
+  </div>
+
+  <div class="links-grid" role="list">
+    <section>
+      <h3>Reach Us</h3>
+      <ul>
+        <li><a href="mailto:readymechanic@gmail.com">readymechanic@gmail.com</a></li>
+        <li><a href="tel:8197852852">9059 666 787 </a></li>
+        <li><a href="tel:7022012201">70 2201 2201</a></li>
+    </ul>
+    </section>
+    <section>
+    <h3>Company</h3>
+    <ul>
+        <li><a href="#">About Us</a></li>
+        
+        <li><a href="#">Contact Us</a></li>
+        
+    </ul>
+    </section>
+    
+    
+    <section>
+    <h3>Quick Links</h3>
+    <ul>
+        <li><a href="#">My Subscriptions</a></li>
+        <li><a href="#"> Fuel Stations</a></li>
+        <li><a href="#">Year Recap</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <nav class="services-nav" aria-label="Footer Services">
+    <a href="#">Fuel-Delivery</a>
+    <a href="#">Fitment Service</a>
+    <a href="#">Car Inspection</a>
+    <a href="#">Bike Express Services</a>
+    <a href="#">Seat Covers</a>
+  </nav>
+
+  <div class="app-social">
+    <div class="download-app-badges">
+        <a href="#" aria-label="Get it on Google Play">
+          <img alt="Get it on Google Play badge" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="110" />
+        </a>
+        <a href="#" aria-label="Download on the App Store">
+          <img alt="Download on the App Store badge" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="100"/>
+        </a>
+      </div>
+    <div class="social-icons" role="list">
+      <a href="#" aria-label="Facebook" role="listitem" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="Instagram" role="listitem" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="LinkedIn" role="listitem" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" aria-label="YouTube" role="listitem" title="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="#" aria-label="WhatsApp" role="listitem" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+
+  
+</footer>
+<!-- Footer Section Close -->
+
+
+
+
+<script src="./assets/js/index.js"></script>
+</body>
+</html>

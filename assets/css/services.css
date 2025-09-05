@@ -1,0 +1,94 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F9FAFB;
+}
+
+.services-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/back.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 5rem 1.5rem;
+    text-align: center;
+    color: white;
+}
+
+.services-hero-content h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: white;
+    animation: none; /* Override index.css animation */
+    opacity: 1;
+    transform: none;
+}
+
+.services-hero-content p {
+    font-size: 1.125rem;
+    max-width: 600px;
+    margin: 0 auto;
+    color: #E5E7EB;
+    animation: none; /* Override index.css animation */
+    opacity: 1;
+    transform: none;
+}
+
+.services-page-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+}
+
+.service-card {
+    background-color: white;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #F3F4F6;
+}
+
+.service-card:hover {
+    box-shadow: 0 10px 15px rgb(59 130 246 / 0.3);
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.service-card-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1.5rem auto;
+    background-color: #DBEAFE;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2563EB;
+    font-size: 1.75rem;
+}
+
+.service-card h3 {
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+    color: #1F2937;
+}
+
+.service-card p {
+    font-size: 0.875rem;
+    color: #6B7280;
+    line-height: 1.5;
+    margin: 0;
+    animation: none; /* Override index.css animation */
+    opacity: 1;
+    transform: none;
+}
+
+@media (min-width: 768px) {
+    .services-hero-content h1 {
+        font-size: 3rem;
+    }
+}

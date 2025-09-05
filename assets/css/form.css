@@ -1,0 +1,185 @@
+body {
+    font-family: 'Inter', sans-serif;
+    color: #4B5563;
+    background-color: #F9FAFB;
+}
+
+.form-background {
+    position: relative;
+    padding: 4rem 1.5rem;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/back.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(4px) brightness(0.6);
+    z-index: -1;
+}
+
+.form-container {
+    background-color: white;
+    border-radius: 0.75rem;
+    padding: 2.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 480px;
+    width: 100%;
+    z-index: 1;
+    /* Initial state for popup animation */
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Visible state for popup animation */
+.form-container.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-header h1 {
+    font-weight: 800;
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+    color: #1F2937;
+}
+
+.form-header .subtitle {
+    color: #6B7280;
+}
+
+.circle-icon, .circle-icon-orange {
+    width: 80px;
+    height: 80px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem auto;
+    flex-shrink: 0;
+}
+
+.circle-icon {
+    background-color: #DBEAFE; /* blue-100 */
+}
+
+.circle-icon i {
+    font-size: 2.25rem;
+    color: #2563EB; /* blue-600 */
+}
+
+.circle-icon-orange {
+    background-color: #FFEDD5; /* orange-100 */
+}
+
+.circle-icon-orange i {
+    font-size: 2.25rem;
+    color: #F97316; /* orange-600 */
+}
+
+.form-body {
+    text-align: left;
+}
+
+.input-group {
+    margin-bottom: 1.25rem;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #374151;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    border: 1px solid #D1D5DB;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+}
+
+.form-options a {
+    color: #2563EB;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-options a:hover {
+    text-decoration: underline;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 0.875rem;
+    border: none;
+    border-radius: 0.375rem;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn.customer {
+    background-color: #2563EB; /* blue-600 */
+}
+
+.submit-btn.customer:hover {
+    background-color: #1D4ED8; /* blue-700 */
+}
+
+.submit-btn.mechanic {
+    background-color: #F97316; /* orange-600 */
+}
+
+.submit-btn.mechanic:hover {
+    background-color: #EA580C; /* orange-700 */
+}
+
+.bottom-link {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.bottom-link a {
+    color: #2563EB;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.bottom-link a:hover {
+    text-decoration: underline;
+}

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   
-  const animatedElements = document.querySelectorAll('.slide, .card, .fade-in-up, .services-container, .whenever-wherever-card, .download-app-section');
+  const animatedElements = document.querySelectorAll('.slide, .card, .fade-in-up, .services-container, .whenever-wherever-card, .download-app-section, .form-container');
 
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -43,6 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (entry.target.classList.contains('download-app-section')) {
           entry.target.classList.add('is-visible');
+        }
+
+        if (entry.target.classList.contains('form-container')) {
+          entry.target.classList.add('visible');
         }
 
         
