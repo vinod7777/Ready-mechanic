@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Ready Mechanic</title>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <img src="assets/img/logo.png" alt="ReadyMechanic Logo" class="logo">
+                <h1>Admin Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span id="userName">Welcome, Admin</span>
+                    <button class="btn-logout" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="dashboard-nav">
+            <button class="nav-btn active" onclick="showSection('overview')">
+                <i class="fas fa-chart-bar"></i>
+                Overview
+            </button>
+            <button class="nav-btn" onclick="showSection('users')">
+                <i class="fas fa-users"></i>
+                Manage Users
+            </button>
+            <button class="nav-btn" onclick="showSection('mechanics')">
+                <i class="fas fa-tools"></i>
+                Manage Mechanics
+            </button>
+            <button class="nav-btn" onclick="showSection('bookings')">
+                <i class="fas fa-calendar"></i>
+                Active Bookings
+            </button>
+            <button class="nav-btn" onclick="showSection('payments')">
+                <i class="fas fa-credit-card"></i>
+                Payments
+            </button>
+            <button class="nav-btn" onclick="showSection('analytics')">
+                <i class="fas fa-chart-line"></i>
+                Analytics
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Overview Section -->
+            <section id="overview" class="dashboard-section active">
+                <h2>Dashboard Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <h3 id="totalCustomers">0</h3>
+                            <p>Total Customers</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-tools"></i>
+                        <div class="stat-info">
+                            <h3 id="totalMechanics">0</h3>
+                            <p>Total Mechanics</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-calendar"></i>
+                        <div class="stat-info">
+                            <h3 id="activeBookings">0</h3>
+                            <p>Active Bookings</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-rupee-sign"></i>
+                        <div class="stat-info">
+                            <h3 id="totalRevenue">₹0</h3>
+                            <p>Total Revenue</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-container">
+                    <div class="chart-card">
+                        <h3>Bookings by Status</h3>
+                        <canvas id="bookingsChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Revenue Trends</h3>
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Users Management Section -->
+            <section id="users" class="dashboard-section">
+                <h2>Manage Customers</h2>
+                <div class="table-controls">
+                    <input type="text" id="userSearch" placeholder="Search customers...">
+                    <select id="userStatusFilter">
+                        <option value="all">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>City</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customersTableBody">
+                            <!-- Customer data will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Mechanics Management Section -->
+            <section id="mechanics" class="dashboard-section">
+                <h2>Manage Mechanics</h2>
+                <div class="table-controls">
+                    <input type="text" id="mechanicSearch" placeholder="Search mechanics...">
+                    <select id="mechanicStatusFilter">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending Verification</option>
+                        <option value="verified">Verified</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Experience</th>
+                                <th>Service Area</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mechanicsTableBody">
+                            <!-- Mechanic data will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Active Bookings Section -->
+            <section id="bookings" class="dashboard-section">
+                <h2>Active Bookings</h2>
+                <div class="table-controls">
+                    <input type="text" id="bookingSearch" placeholder="Search bookings...">
+                    <select id="bookingStatusFilter">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="accepted">Accepted</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Customer</th>
+                                <th>Service Type</th>
+                                <th>Location</th>
+                                <th>Mechanic</th>
+                                <th>Status</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsTableBody">
+                            <!-- Booking data will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Payments Section -->
+            <section id="payments" class="dashboard-section">
+                <h2>Payment Management</h2>
+                <div class="table-controls">
+                    <input type="text" id="paymentSearch" placeholder="Search payments...">
+                    <select id="paymentStatusFilter">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="completed">Completed</option>
+                        <option value="failed">Failed</option>
+                    </select>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Payment ID</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Method</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentsTableBody">
+                            <!-- Payment data will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="dashboard-section">
+                <h2>Analytics & Reports</h2>
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3>Peak Hours</h3>
+                        <canvas id="peakHoursChart"></canvas>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Most Common Services</h3>
+                        <canvas id="servicesChart"></canvas>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>High Demand Areas</h3>
+                        <canvas id="areasChart"></canvas>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Monthly Revenue</h3>
+                        <canvas id="monthlyRevenueChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mechanic Verification Modal -->
+    <div id="verificationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Verify Mechanic</h3>
+                <button class="close-btn" onclick="closeVerificationModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="verification-details">
+                    <h4>Mechanic Information</h4>
+                    <p id="verifyMechanicName">John Doe</p>
+                    <p id="verifyMechanicEmail">john@example.com</p>
+                    <p id="verifyMechanicPhone">+91 9876543210</p>
+                    <p id="verifyMechanicExperience">5 years</p>
+                    <p id="verifyMechanicLicense">LIC123456</p>
+                    <p id="verifyMechanicAadhar">123456789012</p>
+                </div>
+                <div class="verification-actions">
+                    <button class="btn-success" onclick="verifyMechanic(true)">Approve</button>
+                    <button class="btn-danger" onclick="verifyMechanic(false)">Reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="assets/js/admin-dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Service - Ready Mechanic</title>
+    <link rel="stylesheet" href="assets/css/booking.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="booking-container">
+        <div class="booking-header">
+            <h1>Book a Service</h1>
+            <p>Get professional automobile services at your doorstep</p>
+        </div>
+
+        <form id="serviceBookingForm" class="booking-form">
+            <!-- Step 1: Vehicle Type -->
+            <div class="booking-step active" id="step1">
+                <h2>Select Vehicle Type</h2>
+                <div class="vehicle-selection">
+                    <div class="vehicle-option" data-vehicle="bike">
+                        <i class="fas fa-motorcycle"></i>
+                        <h3>Bike</h3>
+                        <p>Two-wheeler services</p>
+                    </div>
+                    <div class="vehicle-option" data-vehicle="car">
+                        <i class="fas fa-car"></i>
+                        <h3>Car</h3>
+                        <p>Four-wheeler services</p>
+                    </div>
+                </div>
+                <span class="error-message" id="vehicleTypeError"></span>
+            </div>
+
+            <!-- Step 2: Service Type -->
+            <div class="booking-step" id="step2">
+                <h2>Select Service Type</h2>
+                <div class="service-selection" id="serviceSelection">
+                    <!-- Services will be populated dynamically based on vehicle type -->
+                </div>
+                <span class="error-message" id="serviceTypeError"></span>
+            </div>
+
+            <!-- Step 3: Upload Photo -->
+            <div class="booking-step" id="step3">
+                <h2>Upload Photo (Optional)</h2>
+                <div class="photo-upload">
+                    <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+                    <div class="upload-area" onclick="document.getElementById('photoUpload').click()">
+                        <i class="fas fa-camera"></i>
+                        <p>Click to upload photo of the issue</p>
+                        <small>JPG, PNG up to 5MB</small>
+                    </div>
+                    <div class="photo-preview" id="photoPreview" style="display: none;">
+                        <img id="previewImage" src="" alt="Preview">
+                        <button type="button" onclick="removePhoto()">Remove</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Location -->
+            <div class="booking-step" id="step4">
+                <h2>Select Location</h2>
+                <div class="location-selection">
+                    <div class="form-group">
+                        <label for="address">Address *</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                        <span class="error-message" id="addressError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="landmark">Landmark (Optional)</label>
+                        <input type="text" id="landmark" name="landmark">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input type="text" id="city" name="city" required>
+                        <span class="error-message" id="cityError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="pincode">Pincode *</label>
+                        <input type="text" id="pincode" name="pincode" required>
+                        <span class="error-message" id="pincodeError"></span>
+                    </div>
+                    <button type="button" class="btn-secondary" onclick="getCurrentLocation()">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Use Current Location
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 5: Additional Details -->
+            <div class="booking-step" id="step5">
+                <h2>Additional Details</h2>
+                <div class="form-group">
+                    <label for="description">Describe the Issue *</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
+                    <span class="error-message" id="descriptionError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="urgency">Urgency Level *</label>
+                    <select id="urgency" name="urgency" required>
+                        <option value="">Select Urgency</option>
+                        <option value="low">Low - Can wait a few hours</option>
+                        <option value="medium">Medium - Need service today</option>
+                        <option value="high">High - Emergency service needed</option>
+                    </select>
+                    <span class="error-message" id="urgencyError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="preferredTime">Preferred Time</label>
+                    <input type="datetime-local" id="preferredTime" name="preferredTime">
+                </div>
+            </div>
+
+            <!-- Step 6: Confirmation -->
+            <div class="booking-step" id="step6">
+                <h2>Confirm Booking</h2>
+                <div class="booking-summary">
+                    <div class="summary-item">
+                        <span class="label">Vehicle Type:</span>
+                        <span class="value" id="summaryVehicleType"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Service Type:</span>
+                        <span class="value" id="summaryServiceType"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Location:</span>
+                        <span class="value" id="summaryLocation"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Urgency:</span>
+                        <span class="value" id="summaryUrgency"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Estimated Cost:</span>
+                        <span class="value" id="summaryCost"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="booking-navigation">
+                <button type="button" class="btn-secondary" id="prevBtn" onclick="changeStep(-1)" style="display: none;">
+                    Previous
+                </button>
+                <button type="button" class="btn-primary" id="nextBtn" onclick="changeStep(1)">
+                    Next
+                </button>
+                <button type="submit" class="btn-primary" id="submitBtn" style="display: none;">
+                    Confirm Booking
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="assets/js/page-loader.js"></script>
+    <script type="module" src="assets/js/booking.js"></script>
+</body>
+</html>

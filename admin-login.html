@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Ready Mechanic</title>
+    <link rel="stylesheet" href="assets/css/auth.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-wrapper">
+            <div class="form-header">
+                <img src="assets/img/logo.png" alt="ReadyMechanic Logo" class="logo">
+                <h1>Admin Login</h1>
+                <p>Access the admin dashboard</p>
+            </div>
+
+            <form id="adminLoginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message" id="emailError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password *</label>
+                    <div class="password-input">
+                        <input type="password" id="password" name="password" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+
+                <button type="submit" class="btn-primary" id="loginBtn">
+                    <span class="btn-text">Sign In</span>
+                    <span class="btn-loader" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </span>
+                </button>
+
+                <div class="form-footer">
+                    <p><a href="index.html" class="link">Back to Home</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/page-loader.js"></script>
+    <script type="module" src="assets/js/admin-auth.js"></script>
+</body>
+</html>

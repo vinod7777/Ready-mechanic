@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard - Ready Mechanic</title>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <img src="assets/img/logo.png" alt="ReadyMechanic Logo" class="logo">
+                <h1>Customer Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span id="userName">Welcome, User</span>
+                    <button class="btn-logout" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="dashboard-nav">
+            <button class="nav-btn active" onclick="showSection('overview')">
+                <i class="fas fa-home"></i>
+                Overview
+            </button>
+            <button class="nav-btn" onclick="showSection('book-service')">
+                <i class="fas fa-plus-circle"></i>
+                Book Service
+            </button>
+            <button class="nav-btn" onclick="showSection('active-bookings')">
+                <i class="fas fa-clock"></i>
+                Active Bookings
+            </button>
+            <button class="nav-btn" onclick="showSection('order-history')">
+                <i class="fas fa-history"></i>
+                Order History
+            </button>
+            <button class="nav-btn" onclick="showSection('payments')">
+                <i class="fas fa-credit-card"></i>
+                Payments
+            </button>
+            <button class="nav-btn" onclick="showSection('profile')">
+                <i class="fas fa-user"></i>
+                Profile
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Overview Section -->
+            <section id="overview" class="dashboard-section active">
+                <h2>Dashboard Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-tools"></i>
+                        <div class="stat-info">
+                            <h3 id="totalServices">0</h3>
+                            <p>Total Services</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <div class="stat-info">
+                            <h3 id="activeBookings">0</h3>
+                            <p>Active Bookings</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-star"></i>
+                        <div class="stat-info">
+                            <h3 id="averageRating">0</h3>
+                            <p>Average Rating</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-rupee-sign"></i>
+                        <div class="stat-info">
+                            <h3 id="totalSpent">₹0</h3>
+                            <p>Total Spent</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-list" id="recentActivity">
+                        <!-- Activity items will be populated dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Book Service Section -->
+            <section id="book-service" class="dashboard-section">
+                <h2>Book a New Service</h2>
+                <div class="quick-book">
+                    <a href="book-service.html" class="btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Book Service Now
+                    </a>
+                </div>
+            </section>
+
+            <!-- Active Bookings Section -->
+            <section id="active-bookings" class="dashboard-section">
+                <h2>Active Bookings</h2>
+                <div class="bookings-list" id="activeBookingsList">
+                    <!-- Active bookings will be populated dynamically -->
+                </div>
+            </section>
+
+            <!-- Order History Section -->
+            <section id="order-history" class="dashboard-section">
+                <h2>Order History</h2>
+                <div class="history-filters">
+                    <select id="statusFilter">
+                        <option value="all">All Status</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                        <option value="in-progress">In Progress</option>
+                    </select>
+                    <input type="date" id="dateFilter" placeholder="Filter by date">
+                </div>
+                <div class="history-list" id="orderHistoryList">
+                    <!-- Order history will be populated dynamically -->
+                </div>
+            </section>
+
+            <!-- Payments Section -->
+            <section id="payments" class="dashboard-section">
+                <h2>Payment History</h2>
+                <div class="payments-list" id="paymentsList">
+                    <!-- Payment history will be populated dynamically -->
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="dashboard-section">
+                <h2>Profile Settings</h2>
+                <form id="profileForm" class="profile-form">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea id="address" name="address" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city">
+                    </div>
+                    <div class="form-group">
+                        <label for="pincode">Pincode</label>
+                        <input type="text" id="pincode" name="pincode">
+                    </div>
+                    <button type="submit" class="btn-primary">Update Profile</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- Live Tracking Modal -->
+    <div id="trackingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Live Tracking</h3>
+                <button class="close-btn" onclick="closeTrackingModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="map" class="tracking-map"></div>
+                <div class="tracking-info">
+                    <div class="mechanic-info">
+                        <h4>Mechanic Details</h4>
+                        <p id="mechanicName">John Doe</p>
+                        <p id="mechanicPhone">+91 9876543210</p>
+                        <p id="mechanicRating">⭐ 4.8</p>
+                    </div>
+                    <div class="status-info">
+                        <h4>Status</h4>
+                        <p id="currentStatus">On the way</p>
+                        <p id="estimatedTime">ETA: 15 minutes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="assets/js/customer-dashboard.js"></script>
+</body>
+</html>

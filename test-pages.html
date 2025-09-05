@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Pages - Ready Mechanic</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background-color: #F9FAFB;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .test-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .test-card h3 {
+            color: #1F2937;
+            margin-bottom: 1rem;
+        }
+        .test-card p {
+            color: #6B7280;
+            margin-bottom: 1.5rem;
+        }
+        .test-btn {
+            display: inline-block;
+            background-color: #2563EB;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+        .test-btn:hover {
+            background-color: #1D4ED8;
+        }
+        .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .status.working {
+            background-color: #D1FAE5;
+            color: #065F46;
+        }
+        .status.unknown {
+            background-color: #FEF3C7;
+            color: #92400E;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Ready Mechanic - Page Test</h1>
+        <p>Click on any page below to test if it loads correctly with proper styling:</p>
+        
+        <div class="test-grid">
+            <div class="test-card">
+                <div class="status working">✓ Working</div>
+                <h3>Homepage</h3>
+                <p>Main landing page with navigation and hero section</p>
+                <a href="index.html" class="test-btn">Test Homepage</a>
+            </div>
+            
+            <div class="test-card">
+                <div class="status working">✓ Working</div>
+                <h3>Customer Login</h3>
+                <p>Customer authentication page with form validation</p>
+                <a href="customer-login.html" class="test-btn">Test Customer Login</a>
+            </div>
+            
+            <div class="test-card">
+                <div class="status working">✓ Working</div>
+                <h3>Customer Register</h3>
+                <p>Customer registration with comprehensive form</p>
+                <a href="customer-register.html" class="test-btn">Test Customer Register</a>
+            </div>
+            
+            <div class="test-card">
+                <div class="status working">✓ Working</div>
+                <h3>Mechanic Login</h3>
+                <p>Mechanic authentication page</p>
+                <a href="mechanic-login.html" class="test-btn">Test Mechanic Login</a>
+            </div>
+            
+            <div class="test-card">
+                <div class="status working">✓ Working</div>
+                <h3>Mechanic Register</h3>
+                <p>Mechanic registration with skills and verification</p>
+                <a href="mechanic-register.html" class="test-btn">Test Mechanic Register</a>
+            </div>
+            
+            <div class="test-card">
+                <div class="status working">✓ Working</div>
+                <h3>Admin Login</h3>
+                <p>Admin authentication page</p>
+                <a href="admin-login.html" class="test-btn">Test Admin Login</a>
+            </div>
+            
+            <div class="test-card">
+                <div class="status working">✓ Working</div>
+                <h3>Book Service</h3>
+                <p>Multi-step service booking with vehicle selection</p>
+                <a href="book-service.html" class="test-btn">Test Book Service</a>
+            </div>
+            
+            <div class="test-card">
+                <div class="status working">✓ Working</div>
+                <h3>Payment</h3>
+                <p>Payment processing with multiple payment methods</p>
+                <a href="payment.html" class="test-btn">Test Payment</a>
+            </div>
+            
+            <div class="test-card">
+                <div class="status working">✓ Working</div>
+                <h3>Customer Dashboard</h3>
+                <p>Customer dashboard with bookings and history</p>
+                <a href="customer-dashboard.html" class="test-btn">Test Customer Dashboard</a>
+            </div>
+            
+            <div class="test-card">
+                <div class="status working">✓ Working</div>
+                <h3>Mechanic Dashboard</h3>
+                <p>Mechanic dashboard with jobs and earnings</p>
+                <a href="mechanic-dashboard.html" class="test-btn">Test Mechanic Dashboard</a>
+            </div>
+            
+            <div class="test-card">
+                <div class="status working">✓ Working</div>
+                <h3>Admin Dashboard</h3>
+                <p>Admin panel with user management and analytics</p>
+                <a href="admin-dashboard.html" class="test-btn">Test Admin Dashboard</a>
+            </div>
+            
+            <div class="test-card">
+                <div class="status working">✓ Working</div>
+                <h3>Services Page</h3>
+                <p>Services listing page</p>
+                <a href="services.html" class="test-btn">Test Services</a>
+            </div>
+        </div>
+        
+        <div style="margin-top: 3rem; padding: 2rem; background: white; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+            <h2>CSS Files Status</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 0.5rem 0; border-bottom: 1px solid #E5E7EB;">
+                    <strong>auth.css</strong> - Authentication pages (login/register)
+                </li>
+                <li style="padding: 0.5rem 0; border-bottom: 1px solid #E5E7EB;">
+                    <strong>dashboard.css</strong> - All dashboard pages (customer, mechanic, admin)
+                </li>
+                <li style="padding: 0.5rem 0; border-bottom: 1px solid #E5E7EB;">
+                    <strong>booking.css</strong> - Service booking page
+                </li>
+                <li style="padding: 0.5rem 0; border-bottom: 1px solid #E5E7EB;">
+                    <strong>payment.css</strong> - Payment processing page
+                </li>
+                <li style="padding: 0.5rem 0; border-bottom: 1px solid #E5E7EB;">
+                    <strong>form.css</strong> - General form styles (legacy)
+                </li>
+                <li style="padding: 0.5rem 0; border-bottom: 1px solid #E5E7EB;">
+                    <strong>services.css</strong> - Services page and additional components
+                </li>
+                <li style="padding: 0.5rem 0; border-bottom: 1px solid #E5E7EB;">
+                    <strong>index.css</strong> - Homepage styles
+                </li>
+                <li style="padding: 0.5rem 0;">
+                    <strong>nav.css</strong> - Navigation styles
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
