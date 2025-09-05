@@ -201,6 +201,42 @@ form {
   animation: fadeInUp 0.8s ease forwards;
   animation-delay: 1.1s;
 }
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 500px;
+  z-index: 10;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 1.1s;
+}
+
+.hero-btn {
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  min-width: 180px;
+  text-decoration: none;
+}
+
+.hero-btn.primary {
+  background-color: #ea5a2f;
+}
+.hero-btn.secondary {
+  background-color: #fff;
+  color: #2f5cc1;
+}
 
 button {
   background-color: #ea5a2f;

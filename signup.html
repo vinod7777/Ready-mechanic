@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - Ready Mechanic</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="./assets/css/nav.css" />
+    <link rel="stylesheet" href="./assets/css/form.css" />
+    <style>
+        .user-type-toggle {
+            display: flex;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.375rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        .user-type-toggle input[type="radio"] {
+            display: none;
+        }
+        .user-type-toggle label {
+            flex: 1;
+            padding: 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: #4B5563;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .user-type-toggle input[type="radio"]:checked + label {
+            color: white;
+        }
+        #user-type-customer:checked + label {
+            background-color: #2563EB; /* blue-600 */
+        }
+        #user-type-mechanic:checked + label {
+            background-color: #F97316; /* orange-600 */
+        }
+        /* Change submit button color based on selection */
+        #user-type-customer:checked ~ .form-body .submit-btn {
+            background-color: #2563EB;
+        }
+        #user-type-customer:checked ~ .form-body .submit-btn:hover {
+            background-color: #1D4ED8;
+        }
+        #user-type-mechanic:checked ~ .form-body .submit-btn {
+            background-color: #F97316;
+        }
+        #user-type-mechanic:checked ~ .form-body .submit-btn:hover {
+            background-color: #EA580C;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="./index.html" class="nav-logo">
+                <img src="assets/img/logo.png" alt="ReadyMechanic Logo" height="60">
+                ReadyMechanic
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="./index.html" class="nav-link">Home</a></li>
+                <li><a href="#" class="nav-link">About</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+                <li><a href="./services.html" class="nav-link">Services</a></li>
+                <li><a href="#" class="nav-link">Subscription</a></li>
+                <li><a href="./register.html" class="nav-link nav-link-btn">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="form-background">
+        <div class="form-container">
+            <div class="form-header">
+                <h1>Create an Account</h1>
+                <p class="subtitle">Join us to easily book services or offer your skills.</p>
+            </div>
+            <form class="form-body" id="signupForm" action="#" method="POST">
+                <div class="user-type-toggle">
+                    <input type="radio" id="user-type-customer" name="user_type" value="customer" checked>
+                    <label for="user-type-customer"><i class="fas fa-user"></i> I'm a Customer</label>
+                    <input type="radio" id="user-type-mechanic" name="user_type" value="mechanic">
+                    <label for="user-type-mechanic"><i class="fas fa-wrench"></i> I'm a Mechanic</label>
+                </div>
+
+                <!-- Common Fields -->
+                <div class="input-group"><label for="fullName">Full Name</label><input type="text" id="fullName" name="fullName" placeholder="Your Name" required></div>
+                <div class="input-group"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="you@example.com" required></div>
+                <div class="input-group"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" required></div>
+                <div class="input-group"><label for="password">Password</label><input type="password" id="password" name="password" placeholder="••••••••" required></div>
+                <div class="input-group"><label for="confirmPassword">Confirm Password</label><input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required></div>
+                <div class="input-group"><label for="address">Full Address</label><textarea id="address" name="address" rows="2" placeholder="Your full address" required></textarea></div>
+
+                <!-- Customer Specific Fields -->
+                <div class="customer-fields">
+                    <div class="input-group"><label for="city">City</label><input type="text" id="city" name="city" placeholder="Your City" required></div>
+                    <div class="input-group"><label for="pincode">Pincode</label><input type="text" id="pincode" name="pincode" placeholder="6-digit Pincode" required></div>
+                </div>
+
+                <!-- Mechanic Specific Fields -->
+                <div class="mechanic-fields" style="display: none;">
+                    <div class="input-group"><label for="serviceArea">Service Area</label><input type="text" id="serviceArea" name="serviceArea" placeholder="e.g., South Delhi, Noida Sector 18" required></div>
+                    <div class="input-group"><label for="experience">Years of Experience</label><select id="experience" name="experience" required><option value="">Select Experience</option><option value="0-1">0-1 Year</option><option value="1-3">1-3 Years</option><option value="3-5">3-5 Years</option><option value="5+">5+ Years</option></select></div>
+                    <div class="input-group"><label>Vehicle Types Serviced</label><div class="checkbox-group"><div class="checkbox-item"><input type="checkbox" id="vehicle-bike" name="vehicleTypes" value="bike"><label for="vehicle-bike">Bike</label></div><div class="checkbox-item"><input type="checkbox" id="vehicle-car" name="vehicleTypes" value="car"><label for="vehicle-car">Car</label></div></div></div>
+                    <div class="input-group"><label for="skills">Skills & Specializations</label><textarea id="skills" name="skills" rows="2" placeholder="e.g., Engine repair, electrical work, flat tire" required></textarea></div>
+                    <div class="input-group"><label for="licenseNumber">Driving License Number</label><input type="text" id="licenseNumber" name="licenseNumber" required></div>
+                    <div class="input-group"><label for="aadharNumber">Aadhar Number</label><input type="text" id="aadharNumber" name="aadharNumber" required></div>
+                    <div class="input-group"><label for="bankAccount">Bank Account Number</label><input type="text" id="bankAccount" name="bankAccount" required></div>
+                    <div class="input-group"><label for="ifscCode">IFSC Code</label><input type="text" id="ifscCode" name="ifscCode" required></div>
+                </div>
+
+                <div class="input-group checkbox-item"><input type="checkbox" id="terms" name="terms" required><label for="terms">I agree to the <a href="#">Terms and Conditions</a></label></div>
+                <button type="submit" class="submit-btn" id="registerBtn">Register</button>
+            </form>
+            <p class="bottom-link">Already have an account? <a href="./login.html">Login here</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-top-section">
+            <div class="logo-address"><h2 class="footer-logo">ReadyMechanic</h2></div>
+            <p class="hashtag"><strong>#alwaysMoveForward</strong></p>
+        </div>
+    </footer>
+
+    <script src="./assets/js/index.js"></script>
+    <script type="module" src="./assets/js/register.js"></script>
+    <!-- Firebase Config is loaded via register.js -->
+</body>
+</html>
