@@ -4,202 +4,212 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Dashboard - Ready Mechanic</title>
-    <link rel="stylesheet" href="assets/css/dashboard.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="./assets/css/nav.css" />
+    <link rel="stylesheet" href="./assets/css/form.css" />
+    <link rel="stylesheet" href="./assets/css/services.css" />
+    <style>
+        .user-info-nav .nav-link {
+            color: #facc15; /* yellow-400 */
+            cursor: default;
+            font-weight: 600;
+        }
+        .user-info-nav .nav-link:hover {
+            color: #facc15;
+        }
+        #logoutBtn {
+            background-color: #DC2626; /* red-600 */
+            border: none;
+            cursor: pointer;
+            color: white !important;
+        }
+        #logoutBtn:hover {
+            background-color: #B91C1C; /* red-800 */
+        }
+    </style>
 </head>
 <body>
-    <div class="dashboard-container">
-        <!-- Header -->
-        <header class="dashboard-header">
-            <div class="header-left">
-                <img src="assets/img/logo.png" alt="ReadyMechanic Logo" class="logo">
-                <h1>Customer Dashboard</h1>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="./index.html" class="nav-logo">
+                <img src="assets/img/logo.png" alt="ReadyMechanic Logo" height="60">
+                ReadyMechanic
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
-            <div class="header-right">
-                <div class="user-info">
-                    <span id="userName">Welcome, User</span>
-                    <button class="btn-logout" onclick="logout()">Logout</button>
-                </div>
-            </div>
-        </header>
+            <ul class="nav-menu">
+                <li><a href="./index.html" class="nav-link">Home</a></li>
+                <li><a href="./services.html" class="nav-link">Services</a></li>
+                <li class="user-info-nav"><span id="userName" class="nav-link">Loading...</span></li>
+                <li><button class="nav-link-btn" id="logoutBtn">Logout</button></li>
+            </ul>
+        </div>
+    </nav>
 
-        <!-- Navigation -->
-        <nav class="dashboard-nav">
-            <button class="nav-btn active" onclick="showSection('overview')">
-                <i class="fas fa-home"></i>
-                Overview
-            </button>
-            <button class="nav-btn" onclick="showSection('book-service')">
-                <i class="fas fa-plus-circle"></i>
-                Book Service
-            </button>
-            <button class="nav-btn" onclick="showSection('active-bookings')">
-                <i class="fas fa-clock"></i>
-                Active Bookings
-            </button>
-            <button class="nav-btn" onclick="showSection('order-history')">
-                <i class="fas fa-history"></i>
-                Order History
-            </button>
-            <button class="nav-btn" onclick="showSection('payments')">
-                <i class="fas fa-credit-card"></i>
-                Payments
-            </button>
-            <button class="nav-btn" onclick="showSection('profile')">
-                <i class="fas fa-user"></i>
-                Profile
-            </button>
-        </nav>
+    <nav class="dashboard-nav">
+        <button class="nav-btn active" data-target="overview-section"><i class="fas fa-tachometer-alt"></i> Overview</button>
+        <button class="nav-btn" data-target="bookings-section"><i class="fas fa-book"></i> My Bookings</button>
+        <button class="nav-btn" data-target="profile-section"><i class="fas fa-user-circle"></i> Profile</button>
+    </nav>
 
-        <!-- Main Content -->
-        <main class="dashboard-main">
-            <!-- Overview Section -->
-            <section id="overview" class="dashboard-section active">
-                <h2>Dashboard Overview</h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
+    <main class="dashboard-main">
+        <!-- Overview Section -->
+        <section id="overview-section" class="dashboard-section active">
+            <h2>Dashboard Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
                         <i class="fas fa-tools"></i>
                         <div class="stat-info">
-                            <h3 id="totalServices">0</h3>
-                            <p>Total Services</p>
+                            <h3 id="totalBookingsStat">0</h3>
+                            <p>Total Bookings</p>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <i class="fas fa-clock"></i>
+                        <i class="fas fa-check-circle"></i>
                         <div class="stat-info">
-                            <h3 id="activeBookings">0</h3>
-                            <p>Active Bookings</p>
+                            <h3 id="completedServicesStat">0</h3>
+                            <p>Completed Services</p>
                         </div>
                     </div>
-                    <div class="stat-card">
-                        <i class="fas fa-star"></i>
-                        <div class="stat-info">
-                            <h3 id="averageRating">0</h3>
-                            <p>Average Rating</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-rupee-sign"></i>
-                        <div class="stat-info">
-                            <h3 id="totalSpent">₹0</h3>
-                            <p>Total Spent</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="recent-activity">
-                    <h3>Recent Activity</h3>
-                    <div class="activity-list" id="recentActivity">
-                        <!-- Activity items will be populated dynamically -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- Book Service Section -->
-            <section id="book-service" class="dashboard-section">
-                <h2>Book a New Service</h2>
-                <div class="quick-book">
-                    <a href="book-service.html" class="btn-primary">
-                        <i class="fas fa-plus"></i>
-                        Book Service Now
-                    </a>
-                </div>
-            </section>
-
-            <!-- Active Bookings Section -->
-            <section id="active-bookings" class="dashboard-section">
-                <h2>Active Bookings</h2>
-                <div class="bookings-list" id="activeBookingsList">
-                    <!-- Active bookings will be populated dynamically -->
-                </div>
-            </section>
-
-            <!-- Order History Section -->
-            <section id="order-history" class="dashboard-section">
-                <h2>Order History</h2>
-                <div class="history-filters">
-                    <select id="statusFilter">
-                        <option value="all">All Status</option>
-                        <option value="completed">Completed</option>
-                        <option value="cancelled">Cancelled</option>
-                        <option value="in-progress">In Progress</option>
-                    </select>
-                    <input type="date" id="dateFilter" placeholder="Filter by date">
-                </div>
-                <div class="history-list" id="orderHistoryList">
-                    <!-- Order history will be populated dynamically -->
-                </div>
-            </section>
-
-            <!-- Payments Section -->
-            <section id="payments" class="dashboard-section">
-                <h2>Payment History</h2>
-                <div class="payments-list" id="paymentsList">
-                    <!-- Payment history will be populated dynamically -->
-                </div>
-            </section>
-
-            <!-- Profile Section -->
-            <section id="profile" class="dashboard-section">
-                <h2>Profile Settings</h2>
-                <form id="profileForm" class="profile-form">
-                    <div class="form-group">
-                        <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" name="fullName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <textarea id="address" name="address" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" id="city" name="city">
-                    </div>
-                    <div class="form-group">
-                        <label for="pincode">Pincode</label>
-                        <input type="text" id="pincode" name="pincode">
-                    </div>
-                    <button type="submit" class="btn-primary">Update Profile</button>
-                </form>
-            </section>
-        </main>
-    </div>
-
-    <!-- Live Tracking Modal -->
-    <div id="trackingModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Live Tracking</h3>
-                <button class="close-btn" onclick="closeTrackingModal()">&times;</button>
             </div>
-            <div class="modal-body">
-                <div id="map" class="tracking-map"></div>
-                <div class="tracking-info">
-                    <div class="mechanic-info">
-                        <h4>Mechanic Details</h4>
-                        <p id="mechanicName">John Doe</p>
-                        <p id="mechanicPhone">+91 9876543210</p>
-                        <p id="mechanicRating">⭐ 4.8</p>
+            <div class="quick-book">
+                <h3>Need a service?</h3>
+                <p>Book a professional mechanic in just a few clicks.</p>
+                <a href="./book-service.html" class="btn-primary">Book New Service</a>
+            </div>
+        </section>
+
+        <!-- My Bookings Section -->
+        <section id="bookings-section" class="dashboard-section">
+            <h2>My Bookings</h2>
+            <div class="history-filters">
+                <select id="bookingStatusFilter">
+                    <option value="all">All Statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="accepted">Accepted</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+            <div class="bookings-list" id="bookingsList">
+                <!-- Booking cards will be dynamically inserted here -->
+                <p>No bookings found.</p>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile-section" class="dashboard-section">
+            <h2>My Profile</h2>
+            <form id="profileForm" class="profile-form">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="profileFullName">Full Name</label>
+                        <input type="text" id="profileFullName" name="fullName" required>
                     </div>
-                    <div class="status-info">
-                        <h4>Status</h4>
-                        <p id="currentStatus">On the way</p>
-                        <p id="estimatedTime">ETA: 15 minutes</p>
+                    <div class="input-group">
+                        <label for="profileEmail">Email</label>
+                        <input type="email" id="profileEmail" name="email" disabled>
                     </div>
                 </div>
-            </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="profilePhone">Phone Number</label>
+                        <input type="tel" id="profilePhone" name="phone" required>
+                    </div>
+                     <div class="input-group">
+                        <label for="profileCity">City</label>
+                        <input type="text" id="profileCity" name="city" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="profileAddress">Full Address</label>
+                    <textarea id="profileAddress" name="address" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Update Profile</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-top-section">
+          <div class="logo-address">
+            <h2 class="footer-logo">
+              <span class="logo-icon" aria-hidden="true">
+                
+              </span>
+              ReadyMechanic
+            </h2>
+            
+          </div>
+          <p class="hashtag"><strong>#alwaysMoveForward</strong></p>
         </div>
-    </div>
+      
+        <div class="links-grid" role="list">
+          <section>
+            <h3>Reach Us</h3>
+            <ul>
+              <li><a href="mailto:readymechanic@gmail.com">readymechanic@gmail.com</a></li>
+              <li><a href="tel:8197852852">9059 666 787 </a></li>
+              <li><a href="tel:7022012201">70 2201 2201</a></li>
+            </ul>
+          </section>
+          <section>
+            <h3>Company</h3>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              
+              <li><a href="#">Contact Us</a></li>
+              
+            </ul>
+          </section>
+          
+          
+          <section>
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#">My Subscriptions</a></li>
+              <li><a href="#"> Fuel Stations</a></li>
+              <li><a href="#">Year Recap</a></li>
+            </ul>
+          </section>
+        </div>
+      
+        <nav class="services-nav" aria-label="Footer Services">
+          <a href="#">Fuel-Delivery</a>
+          <a href="#">Fitment Service</a>
+          <a href="#">Car Inspection</a>
+          <a href="#">Bike Express Services</a>
+          <a href="#">Seat Covers</a>
+        </nav>
+      
+        <div class="app-social">
+          <div class="download-app-badges">
+              <a href="#" aria-label="Get it on Google Play">
+                <img alt="Get it on Google Play badge" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="110" />
+              </a>
+              <a href="#" aria-label="Download on the App Store">
+                <img alt="Download on the App Store badge" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="100"/>
+              </a>
+            </div>
+          <div class="social-icons" role="list">
+            <a href="#" aria-label="Facebook" role="listitem" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram" role="listitem" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn" role="listitem" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="YouTube" role="listitem" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="WhatsApp" role="listitem" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      
+        
+      </footer>
 
-    <script type="module" src="assets/js/customer-dashboard.js"></script>
+    <script type="module" src="./assets/js/customer-dashboard.js"></script>
 </body>
 </html>
+
+

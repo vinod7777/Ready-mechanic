@@ -34,7 +34,7 @@ body {
     border-radius: 0.75rem;
     padding: 2.5rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    max-width: 480px;
+    max-width: 600px;
     width: 100%;
     z-index: 1;
     /* Initial state for popup animation */
@@ -96,6 +96,12 @@ body {
 
 .form-body {
     text-align: left;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
 }
 
 .input-group {

@@ -68,11 +68,9 @@ Ready-mechanic/
 │       ├── admin-dashboard.js    # Admin dashboard
 │       └── payment.js            # Payment processing
 ├── index.html                # Homepage
-├── customer-login.html       # Customer login page
-├── customer-register.html    # Customer registration
+├── login.html                # Unified login page
+├── register.html             # Unified registration page
 ├── customer-dashboard.html   # Customer dashboard
-├── mechanic-login.html       # Mechanic login page
-├── mechanic-register.html    # Mechanic registration
 ├── mechanic-dashboard.html   # Mechanic dashboard
 ├── admin-login.html          # Admin login page
 ├── admin-dashboard.html      # Admin dashboard
