@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Service - Ready Mechanic</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="./assets/css/nav.css" />
+    <link rel="stylesheet" href="./assets/css/form.css" />
+    <link rel="stylesheet" href="./assets/css/services.css" />
+    <style>
+        .user-info-nav .nav-link { color: #facc15; cursor: default; font-weight: 600; }
+        .user-info-nav .nav-link:hover { color: #facc15; }
+        #logoutBtn { background-color: #DC2626; border: none; cursor: pointer; color: white !important; }
+        #logoutBtn:hover { background-color: #B91C1C; }
+        .mechanic-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .mechanic-card:hover {
+            border-color: #2563EB;
+            background-color: #f3f4f6;
+        }
+        .mechanic-card.selected {
+            border-color: #2563EB;
+            background-color: #eff6ff;
+            box-shadow: 0 0 0 2px #2563EB;
+        }
+        .mechanic-card .avatar {
+            font-size: 2.5rem;
+            color: #6b7280;
+        }
+        .mechanic-card .details h4 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.1rem;
+        }
+        .mechanic-card .details p {
+            margin: 0;
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+        .mechanic-card .rating {
+            margin-left: auto;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .rating .fa-star {
+            color: #f59e0b;
+        }
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="./index.html" class="nav-logo">
+                <img src="assets/img/logo.png" alt="ReadyMechanic Logo" height="60">
+                ReadyMechanic
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="./customer-dashboard.html" class="nav-link">Dashboard</a></li>
+                <li class="user-info-nav">
+                    <span class="nav-link" style="gap: 0.5rem;">
+                        <i style="font-size: 1.5rem;" class="fas fa-user-circle"></i>
+                        <span id="navUserName">Customer</span>
+                    </span></li>
+                <li><button class="nav-link-btn" id="logoutBtn">Logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="booking-container">
+        <div class="booking-header">
+            <h1>Book a Service</h1>
+            <p>Fill in the details and we'll connect you with a mechanic.</p>
+        </div>
+
+        <form id="bookingForm" class="booking-form">
+            <!-- Step 1: Service Details -->
+            <div id="step1" class="booking-step active">
+                <h2>1. Service Details</h2>
+                <div class="form-group">
+                    <label for="bookingVehicle">Select Your Vehicle</label>
+                    <select id="bookingVehicle" name="vehicleId" required>
+                        <option value="">Loading your vehicles...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bookingService">Select Service Type</label>
+                    <select id="bookingService" name="service" required>
+                        <option value="">Select a service</option>
+                        <option value="General Service & Oil Change">General Service & Oil Change</option>
+                        <option value="Battery Replacement">Battery Replacement</option>
+                        <option value="Brake Repair & Service">Brake Repair & Service</option>
+                        <option value="Flat Tire & Puncture Repair">Flat Tire & Puncture Repair</option>
+                        <option value="Engine Diagnostics">Engine Diagnostics</option>
+                        <option value="Starting Problems">Starting Problems</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bookingDescription">Describe the Issue (Optional)</label>
+                    <textarea id="bookingDescription" name="description" rows="3" placeholder="e.g., My bike is not starting, there is a clicking sound."></textarea>
+                </div>
+            </div>
+
+            <!-- Step 2: Address -->
+            <div id="step2" class="booking-step">
+                <h2>2. Confirm Your Location</h2>
+                <div class="form-group">
+                    <label for="bookingAddress">Service Address</label>
+                    <textarea id="bookingAddress" name="address" rows="3" required placeholder="Your current location for the service."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="bookingCity">City</label>
+                    <input type="text" id="bookingCity" name="city" required>
+                </div>
+            </div>
+
+            <!-- Step 3: Select Mechanic -->
+            <div id="step3" class="booking-step">
+                <h2>3. Choose a Mechanic</h2>
+                <div id="mechanicList" class="bookings-list">
+                    <p style="text-align:center; padding: 2rem;">Finding available mechanics near you...</p>
+                </div>
+            </div>
+
+            <!-- Step 4: Confirmation -->
+            <div id="step4" class="booking-step">
+                <h2>4. Confirm Booking</h2>
+                <div id="bookingSummary" class="booking-summary">
+                    <!-- Summary will be populated by JS -->
+                </div>
+                <p>Your request will be sent to the mechanic. You will be notified once they accept the job.</p>
+            </div>
+
+            <!-- Navigation -->
+            <div class="booking-navigation">
+                <button type="button" id="prevBtn" class="btn-secondary" style="display: none;">Previous</button>
+                <button type="button" id="nextBtn" class="btn-primary">Next</button>
+                <button type="submit" id="confirmBtn" class="btn-primary" style="display: none;">Confirm & Book</button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Footer Section Open -->
+    <footer>
+      <div class="footer-top-section">
+        <div class="logo-address">
+          <h2 class="footer-logo">ReadyMechanic</h2>
+        </div>
+        <p class="hashtag"><strong>#alwaysMoveForward</strong></p>
+      </div>
+      <div class="links-grid" role="list">
+        <section>
+          <h3>Reach Us</h3>
+          <ul>
+            <li><a href="mailto:readymechanic@gmail.com">readymechanic@gmail.com</a></li>
+            <li><a href="tel:9059666787">9059 666 787</a></li>
+          </ul>
+        </section>
+        <section>
+          <h3>Company</h3>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="./contact.html">Contact Us</a></li>
+          </ul>
+        </section>
+        <section>
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">My Subscriptions</a></li>
+            <li><a href="#">Fuel Stations</a></li>
+          </ul>
+        </section>
+      </div>
+    </footer>
+    <!-- Footer Section Close -->
+    <script src="./assets/js/index.js"></script>
+    <script type="module" src="./assets/js/booking.js"></script>
+</body>
+</html>
+
+```

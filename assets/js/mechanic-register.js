@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     bankAccount: data.bankAccount,
                     ifscCode: data.ifscCode,
                     userType: 'mechanic',
-                    status: 'pending', // Mechanics need admin verification
+                    status: 'verified',
                     createdAt: serverTimestamp(),
                     isActive: true,
                     rating: 0,

@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (userDoc.exists()) {
                     // User type is correct, proceed with redirect
-                   
+                    
                     window.location.href = redirectURL;
                 } else {
                     // User exists in Auth but not in the right collection (e.g., a mechanic trying to log in as a customer)

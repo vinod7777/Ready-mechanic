@@ -137,6 +137,11 @@ service cloud.firestore {
     match /customers/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
+
+    // Customers can manage their own vehicles
+    match /customers/{userId}/vehicles/{vehicleId} {
+      allow read, write, delete: if request.auth != null && request.auth.uid == userId;
+    }
     
     // Mechanics can read/write their own data
     match /mechanics/{userId} {
