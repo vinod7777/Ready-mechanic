@@ -80,7 +80,17 @@
                         <div class="input-group"><label for="serviceArea">Service Area</label><input type="text" id="serviceArea" name="serviceArea" placeholder="e.g., South Delhi, Noida Sector 18" required></div>
                         <div class="input-group"><label for="experience">Years of Experience</label><select id="experience" name="experience" required><option value="">Select Experience</option><option value="0-1">0-1 Year</option><option value="1-3">1-3 Years</option><option value="3-5">3-5 Years</option><option value="5+">5+ Years</option></select></div>
                     </div>
-                    <div class="input-group"><label>Vehicle Types Serviced</label><div class="checkbox-group"><div class="checkbox-item"><input type="checkbox" id="vehicle-bike" name="vehicleTypes" value="bike"><label for="vehicle-bike">Bike</label></div><div class="checkbox-item"><input type="checkbox" id="vehicle-car" name="vehicleTypes" value="car"><label for="vehicle-car">Car</label></div></div></div>
+                    <div class="input-group">
+                        <label>Vehicle Types Serviced</label>
+                        <div class="checkbox-group">
+                            <label for="vehicle-bike" class="checkbox-item">
+                                <input type="checkbox" id="vehicle-bike" name="vehicleTypes" value="bike"><span class="checkmark"></span> Bike
+                            </label>
+                            <label for="vehicle-car" class="checkbox-item">
+                                <input type="checkbox" id="vehicle-car" name="vehicleTypes" value="car"><span class="checkmark"></span> Car
+                            </label>
+                        </div>
+                    </div>
                     <div class="input-group"><label for="skills">Skills & Specializations</label><textarea id="skills" name="skills" rows="2" placeholder="e.g., Engine repair, electrical work, flat tire" required></textarea></div>
                     <div class="form-row">
                         <div class="input-group"><label for="licenseNumber">Driving License Number</label><input type="text" id="licenseNumber" name="licenseNumber" required></div>
@@ -92,7 +102,11 @@
                     </div>
                 </div>
 
-                <div class="input-group checkbox-item"><input type="checkbox" id="terms" name="terms" required><label for="terms">I agree to the <a href="#">Terms and Conditions</a></label></div>
+                <div class="input-group">
+                    <label for="terms" class="checkbox-item">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <span class="checkmark"></span> I agree to the <a href="#">Terms and Conditions</a>
+                    </label></div>
                 <button type="submit" class="submit-btn" id="registerBtn">Register as Mechanic</button>
             </form>
             <p class="bottom-link">Already have an account? <a href="./login.html">Login here</a></p>
@@ -107,6 +121,6 @@
     </footer>
 
     <script src="./assets/js/index.js"></script>
-    <script type="module" src="./assets/js/register.js"></script>
+    <script type="module" src="./assets/js/mechanic-register.js"></script>
 </body>
 </html>

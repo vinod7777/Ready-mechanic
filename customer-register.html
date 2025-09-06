@@ -70,7 +70,11 @@
                     <div class="input-group"><label for="pincode">Pincode</label><input type="text" id="pincode" name="pincode" placeholder="6-digit Pincode" required></div>
                 </div>
 
-                <div class="input-group checkbox-item"><input type="checkbox" id="terms" name="terms" required><label for="terms">I agree to the <a href="#">Terms and Conditions</a></label></div>
+                <div class="input-group">
+                    <label for="terms" class="checkbox-item">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <span class="checkmark"></span> I agree to the <a href="#">Terms and Conditions</a>
+                    </label></div>
                 <button type="submit" class="submit-btn" id="registerBtn">Register as Customer</button>
             </form>
             <p class="bottom-link">Already have an account? <a href="./login.html">Login here</a></p>
@@ -85,6 +89,6 @@
     </footer>
 
     <script src="./assets/js/index.js"></script>
-    <script type="module" src="./assets/js/register.js"></script>
+    <script type="module" src="./assets/js/customer-register.js"></script>
 </body>
 </html>
